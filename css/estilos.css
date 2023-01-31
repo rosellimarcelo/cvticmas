@@ -2,6 +2,14 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+#plantillas {
+    display: none;
+}
+
+.menu {
+    text-align: right;
+}
+
 a {
     color: black;
     text-decoration: none;
@@ -66,7 +74,7 @@ li {
     color: #99524a;
     padding: 10px;
     font-weight: 800;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     border-radius: 0 74px 74px 0;
 }
 
@@ -87,6 +95,11 @@ li {
 .contenido {
     font-size: 14px;
 }
+
+.contacto a {
+    font-size: 18px;
+    margin-left: 10px;
+} 
 
 .botones {
     margin: 0 auto;

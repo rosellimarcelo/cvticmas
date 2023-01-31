@@ -5,19 +5,40 @@
         .then(json => completar_cv(json));
     }
 
-    function completar_cv(datos) {
-        let postulante = datos.results[0];
-        document.getElementById("foto-postulante").setAttribute("src", postulante.picture.large);
-        document.getElementById("nombre-postulante").innerHTML = postulante.name.title + ". " + postulante.name.first + " " + postulante.name.last;
-        document.getElementById("email-postulante").innerHTML = postulante.email;
-        document.getElementById("email-postulante").setAttribute("href", "mailto:" + postulante.email);
-        document.getElementById("email-postulante1").innerHTML = postulante.email;
-        document.getElementById("email-postulante1").setAttribute("href", "mailto:" + postulante.email);
-        document.getElementById("edad-postulante").innerHTML = postulante.dob.age;
-        document.getElementById("nacionalidad-postulante").innerHTML = postulante.nat;
-        document.getElementById("telefono-postulante").innerHTML = postulante.cell;
-        document.getElementById("ciudad-postulante").innerHTML = postulante.location.city + ", " + postulante.location.country;
-        document.getElementById("calle-postulante").innerHTML = postulante.location.city + ", " + postulante.location.street.name + " " + postulante.location.street.number;
+    function onClick(item) {
+        document.getElementById("boton-"+item).onclick = function () {
+            document.getElementById("principal").innerHTML = document.getElementById("p-"+item).innerHTML;
+        };
+    }
+    
+    function innerHtml(id, valor) {
+        document.getElementById(id).innerHTML = valor;
     }
 
+    function setAttribute(id, atributo, valor) {
+        document.getElementById(id).setAttribute(atributo, valor);
+    }
+
+    function completar_cv(datos) {
+        let postulante = datos.results[0];
+        setAttribute("foto-postulante", "src", postulante.picture.large);
+        setAttribute("email-postulante", "href", "mailto:" + postulante.email);
+        setAttribute("email-postulante1", "href", "mailto:" + postulante.email);
+        innerHtml("nombre-postulante", postulante.name.title + ". " + postulante.name.first + " " + postulante.name.last);
+        innerHtml("email-postulante", postulante.email);
+        innerHtml("email-postulante1", postulante.email);
+        innerHtml("edad-postulante", postulante.dob.age);
+        innerHtml("nacionalidad-postulante", postulante.nat);
+        innerHtml("telefono-postulante", postulante.cell);
+        innerHtml("ciudad-postulante", postulante.location.city + ", " + postulante.location.country);
+        innerHtml("calle-postulante", postulante.location.city + ", " + postulante.location.street.name + " " + postulante.location.street.number);
+        innerHtml("principal", document.getElementById("p-sobremi").innerHTML);
+    }
+
+    onClick("sobremi");
+    onClick("habilidades");
+    onClick("educacion");
+    onClick("idiomas");
+    onClick("experiencia");
+    onClick("contacto");
     carga_datos();
